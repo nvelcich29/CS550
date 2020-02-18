@@ -14,10 +14,13 @@ public class RMImpl extends UnicastRemoteObject implements RemoteMethodsInterfac
         super();
     }
 
+    //This is how the server keeps a record of clients registered to the server.  
     ArrayList<Peer> peers = new ArrayList<Peer>();
 
     //implementation of the registry RMI
     public void registry(int pid, String fileName) throws RemoteException{
+        
+        //This checks to see if the client has allready been registered to the server by checking the ID numbers.  
         Boolean key = true;
         for(int i=0;i<peers.size();i++){
             if(peers.get(i).getId()==pid){
@@ -28,6 +31,7 @@ public class RMImpl extends UnicastRemoteObject implements RemoteMethodsInterfac
             Peer p = new Peer(pid, fileName);
             peers.add(p);
         }
+        System.out.println("Number of registered machines:" + peers.size());
         
     }
 
