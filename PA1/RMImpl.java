@@ -18,17 +18,17 @@ public class RMImpl extends UnicastRemoteObject implements RemoteMethodsInterfac
     ArrayList<Peer> peers = new ArrayList<Peer>();
 
     //implementation of the registry RMI
-    public void registry(int pid, String fileName) throws RemoteException{
+    public void registry(String nAddr, ArrayList<String> fileNames, String nDir, int nPort) throws RemoteException{
         
-        //This checks to see if the client has allready been registered to the server by checking the ID numbers.  
+        //This checks to see if the client has allready been registered to the server by checking the Ip Address.  
         Boolean key = true;
         for(int i=0;i<peers.size();i++){
-            if(peers.get(i).getId()==pid){
+            if(peers.get(i).getAddr().equals(nAddr)){
                 key = false;
             }
         }
         if(key){
-            Peer p = new Peer(pid, fileName);
+            Peer p = new Peer(nAddr, fileNames, nDir, nPort);
             peers.add(p);
         }
         System.out.println("Number of registered machines:" + peers.size());
@@ -40,7 +40,7 @@ public class RMImpl extends UnicastRemoteObject implements RemoteMethodsInterfac
         for(int i=0; i<peers.size();i++){
             for(int k=0; k<((peers.get(i)).getFiles()).size(); k++){
                 if((peers.get(i).getFile(k)).equals(fileName)){
-                    return (peers.get(i)).getId();
+                    return i;
                 }
             }
         }

@@ -16,7 +16,7 @@ public class Peer{
         addr = newAddr;
         directory = nDir;
         port = nPort;
-
+        System.out.println(files.get(0));
     }
     public int getId(){
         return id;

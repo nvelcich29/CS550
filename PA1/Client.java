@@ -1,6 +1,7 @@
 import java.rmi.*;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 //import java.net.*;
@@ -37,6 +38,9 @@ public class Client{
             return;
         }
 
+        //Taking all the file names from the directory given from cmd line
+        ArrayList<String> fileNames = Util.getDirFiles(file);
+        System.out.println(fileNames);
         //getting the IP address for this running program.  
         String addr = InetAddress.getLocalHost().getHostAddress();
 
@@ -46,7 +50,7 @@ public class Client{
 
             RemoteMethodsInterface rM = (RemoteMethodsInterface) o;
 
-            rM.registry(2, "fileName");
+            rM.registry(addr, fileNames, dir, port);
         }
         catch(RemoteException ex){
             System.err.println("Remote object threw exception "+ ex);
