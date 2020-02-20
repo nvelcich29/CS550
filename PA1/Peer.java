@@ -10,13 +10,15 @@ public class Peer{
 
     public Peer(String newAddr, ArrayList<String> nFiles, String nDir, int nPort){
         id=id++;
+        //System.out.println("size of nFiles is:"+nFiles.size());
         for(int i=0; i<nFiles.size();i++){
             files.add(nFiles.get(i));
         }
         addr = newAddr;
         directory = nDir;
         port = nPort;
-        System.out.println(files.get(0));
+        //System.out.println(files.get(0));
+        System.out.println("ID is:"+this.id);
     }
     public int getId(){
         return id;

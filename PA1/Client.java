@@ -10,7 +10,7 @@ public class Client{
 
     public static void main(String [] args)throws IOException{
         //Socket socket = new Socket("127.0.0.1",15123);
-        
+        int myId=-1;
         if(args.length != 2){
             System.out.println("ERROR: Please type 'java Client [folder] [port]' to execute this program correctly.");
             return;
@@ -50,7 +50,7 @@ public class Client{
 
             RemoteMethodsInterface rM = (RemoteMethodsInterface) o;
 
-            rM.registry(addr, fileNames, dir, port);
+            myId=rM.registry(addr, fileNames, dir, port);
         }
         catch(RemoteException ex){
             System.err.println("Remote object threw exception "+ ex);
@@ -60,7 +60,7 @@ public class Client{
         }
         
         Scanner in = new Scanner(System.in);
-        int id=0;
+        String fileIP = "Initialized";
         System.out.println("This machine has been registered by the server. Please enter a file name to search for.");
         System.out.print(">");
         String searchFile = in.nextLine();
@@ -70,7 +70,7 @@ public class Client{
 
             RemoteMethodsInterface rM = (RemoteMethodsInterface) o;
 
-            id=rM.search(searchFile);
+            fileIP=rM.search(searchFile);
         }
         catch(RemoteException ex){
             System.err.println("Remote object threw exception "+ ex);
@@ -78,7 +78,22 @@ public class Client{
         catch(NotBoundException ex){
             System.err.println("Could not find the requested remote object on the server");
         }
-        System.out.println("The server returned:"+ id);
+        System.out.println("The server returned:"+ fileIP);
+
+        try{
+            Object o = Naming.lookup("rmi://localhost/Remo");
+
+            RemoteMethodsInterface rM = (RemoteMethodsInterface) o;
+
+            rM.logOff(myId);
+        }
+        catch(RemoteException ex){
+            System.err.println("Remote object threw exception "+ ex);
+        }
+        catch(NotBoundException ex){
+            System.err.println("Could not find the requested remote object on the server");
+        }
+        
 
         in.close();
         //socket.close();
