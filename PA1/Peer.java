@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 
 public class Peer{
-    private int id = 0;
+    private int id;
+    private static int count=0;
     private ArrayList<String> files= new ArrayList<String>();
     private String addr;
     private int port;
@@ -9,7 +10,7 @@ public class Peer{
 
 
     public Peer(String newAddr, ArrayList<String> nFiles, String nDir, int nPort){
-        id=id++;
+        setId(count++);
         //System.out.println("size of nFiles is:"+nFiles.size());
         for(int i=0; i<nFiles.size();i++){
             files.add(nFiles.get(i));
@@ -45,5 +46,23 @@ public class Peer{
 
     public String getAddr(){
         return addr;
+    }
+
+    public void setId(int jobId){
+        this.id=jobId;
+    }
+    public static void setCount(int nCount){
+        count = nCount;
+    }
+
+    public void setFiles(ArrayList<String> nFiles){
+        for(int i=0; i<nFiles.size();i++){
+            if(i<files.size()){
+                files.set(i, nFiles.get(i));
+            }
+            else{
+                files.add(nFiles.get(i));
+            }
+        }
     }
 }

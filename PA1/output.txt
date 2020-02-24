@@ -1,0 +1,17 @@
+Script started on 2020-02-23 20:08:43-0600
+]0;nvelcich@DESKTOP-IOT0AL5: ~/CS550/PA1[01;32mnvelcich@DESKTOP-IOT0AL5[00m:[01;34m~/CS550/PA1[00m$ exitls f2java Client f2 3024ls f2[Kjava Client f2 3024
+This machine has been registered by the server. Please enter a file name to search for or enter 'Q' to quit.
+>small.tst
+Sorry, the file is unavailable at this time.
+Type another file to search for or type 'Q' to quit.
+>small.txt
+The file you are searching for is available.  Would you like to download (y,n)?
+>y
+Downloading
+Download complete:1 milli-seconds
+>Type another file to search for or type 'Q' to quit.
+>Q
+]0;nvelcich@DESKTOP-IOT0AL5: ~/CS550/PA1[01;32mnvelcich@DESKTOP-IOT0AL5[00m:[01;34m~/CS550/PA1[00m$ exit
+exit
+
+Script done on 2020-02-23 20:09:06-0600
